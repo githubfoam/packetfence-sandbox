@@ -1,0 +1,18 @@
+---
+# [WARNING]: Could not find aptitude. Using apt-get instead fix
+- name: "APT: Install aptitude package"
+  apt:
+   name: aptitude
+   force_apt_get: yes
+- name: "Add an apt key by id from a keyserver"
+  apt_key:
+    keyserver: keys.gnupg.net
+    id: 0x810273C4
+- name: "Add the Inverse repository under /etc/apt/sources.list.d/ by adding the file packetfence.list"
+  apt_repository:
+    repo: "deb http://inverse.ca/downloads/PacketFence/debian precise precise"
+    state: present
+    filename: packetfence
+- name: "Install packetfence package"
+  apt:
+   name: packetfence
